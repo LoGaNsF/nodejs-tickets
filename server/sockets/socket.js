@@ -32,5 +32,9 @@ io.on('connection', (client) => {
         let attendedTicket = ticketControl.attendTicket(data.desk);
 
         callback(attendedTicket);
+
+        client.broadcast.emit('ticket:current:update', {
+            currentTickets: ticketControl.getCurrentTickets()
+        });
     });
 });
